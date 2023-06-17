@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShapeService } from './services/shape.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-shapes';
+
+  userList: any[] = [];
+
+  constructor(private shapeSvc: ShapeService) {}
+
+  ngOnInit(): void {
+    this.shapeSvc.getUsers()
+      .subscribe(datos => {
+        this.userList = datos;
+        console.log(datos);
+      });
+  }
 }

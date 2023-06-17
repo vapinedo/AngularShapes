@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 
-import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ShapeCreateComponent } from './components/shape/shape-create.component';
@@ -10,7 +11,8 @@ import { ShapeCreateComponent } from './components/shape/shape-create.component'
 const modules = [
   BrowserModule,
   ReactiveFormsModule, 
-  AppRoutingModule
+  AppRoutingModule,
+  HttpClientModule
 ];
 
 const components = [

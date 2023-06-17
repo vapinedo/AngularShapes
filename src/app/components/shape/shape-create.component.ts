@@ -55,13 +55,15 @@ export class ShapeCreateComponent implements OnInit {
 
   async onSubmit() {
     const formData = this.form.value;
-    console.log("formData", formData);
+    this.shapeSvc.getShape(formData.radius)
+      .subscribe(response => {
+        this.drawCircle(this.canvasContext, this.canvas, formData.radius, response.x, response.y);    
+      })
 
     //   const point1 = {x: 30,  y: 180};
     //   const point2 = {x: 170, y: 160};
     //   const point3 = {x: 100, y: 30 };
     //   // this.drawTriangle(canvasContext, point1, point2, point3, true);    
-      this.drawCircle(this.canvasContext, this.canvas, formData.radius);    
   }
 
   drawTriangle(context: any, side1: any, side2: any, side3: any, filled: boolean) {
@@ -73,11 +75,11 @@ export class ShapeCreateComponent implements OnInit {
     filled ? context.fill() : context.stroke();
   }
 
-  drawCircle(context: any, canvas: any, radius: any) {
+  drawCircle(context: any, canvas: any, radius: any, x: any, y: any) {
     context.reset();
 
-    const x = canvas.nativeElement.width / 2;
-    const y = canvas.nativeElement.height / 2;
+    // const x = canvas.nativeElement.width / 2;
+    // const y = canvas.nativeElement.height / 2;
 
     context.beginPath();
     

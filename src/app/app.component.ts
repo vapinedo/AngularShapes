@@ -10,13 +10,13 @@ export class AppComponent {
 
   userList: any[] = [];
 
-  constructor(private shapeSvc: ShapeService) {}
+  constructor(private shapeSvc: ShapeService) { }
 
   ngOnInit(): void {
-    this.shapeSvc.getUsers()
-      .subscribe(datos => {
-        this.userList = datos;
-        console.log(datos);
+    this.shapeSvc.getShape(25)
+      .subscribe(Response => {
+        //this.userList = datos;
+        console.log(Response);
       });
   }
 }

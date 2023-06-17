@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+.small-control {
+    width: 200px;    
+    margin: 0 10px;
+}
+#canvas {
+    width: 1000px;
+    height: 700px;
+    border: 1px dashed #ccc;
+}
+.sentence__text {
+    margin: 0;
+    font-weight: bold;
+}
+.shape-group {
+    display: flex;
+    align-items: center;
+}

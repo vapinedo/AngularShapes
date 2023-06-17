@@ -1,0 +1,25 @@
+.sentence {
+    display: flex;
+    align-items: center;
+
+    .sentence__text {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .shape-group {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.small-control {
+    width: 200px;    
+    margin: 0 10px;
+}
+
+#canvas {
+    border: 1px dashed #ccc;
+    height: 700px;
+    width: 100%;
+}

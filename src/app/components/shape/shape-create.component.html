@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="my-3">
+  <div class="mb-3 sentence">
+    <p class="sentence__text">Draw an</p>
+
+    <select formControlName="shape" class="form-select form-select-sm small-control" (change)="onShapeChange($event)">
+      <option *ngFor="let shape of shapeList" [value]="shape.key">{{ shape.value }}</option>
+    </select>
+
+    <div class="shape-group" *ngIf="shapeToRender === 'circle'">
+      <p class="sentence__text">with a radius of</p>
+      <input formControlName="radius" type="number" class="form-control form-control-sm small-control">
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-sm">Draw</button>
+    </div>
+    
+    <!-- <div class="shape-group" *ngIf="shapeToRender === 'square' || shapeToRender === 'hexagon' || shapeToRender === 'heptagon'  || shapeToRender === 'octagon' || shapeToRender === 'pentagon'">
+      <p class="sentence__text">with a side of legnth of</p>
+      <input formControlName="side" type="text" class="form-control form-control-sm small-control">
+    </div>
+
+    <div class="shape-group" *ngIf="shapeToRender === 'triangle'">
+      <p class="sentence__text">with side 1 of</p>
+      <input formControlName="side" type="text" class="form-control form-control-sm small-control">
+      <p class="sentence__text">side 2 of</p>
+      <input formControlName="side2" type="text" class="form-control form-control-sm small-control">
+      <p class="sentence__text">and side 3 of</p>
+      <input formControlName="side3" type="text" class="form-control form-control-sm small-control">
+    </div>    
+
+    <div class="shape-group" *ngIf="shapeToRender === 'rectangle' || shapeToRender === 'isosceles_triangle' || shapeToRender === 'parallelogram'">
+      <p class="sentence__text">with a width of</p>
+      <input formControlName="width" type="text" class="form-control form-control-sm small-control">
+      <p class="sentence__text">and a height of</p>
+      <input formControlName="height" type="text" class="form-control form-control-sm small-control">
+    </div> -->
+
+  </div>
+</form>
+
+<h2>Canvas</h2>
+<canvas id="canvas" #canvas></canvas>

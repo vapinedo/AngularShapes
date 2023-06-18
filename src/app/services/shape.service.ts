@@ -11,8 +11,8 @@ export class ShapeService {
     private readonly APIUrl = "https://localhost:7277/GabrielAppTest/Shape?";
 
 
-    getShape(radius: any) {
-        let ciculeAPI = `shapeType=circule&measurement1=${radius}&measurement2=0`;
+    getShape(radius: any, canvasWidth: any, canvasHeight: any) {
+        let ciculeAPI = `shapeType=circule&measurement1=${radius}&measurement2=0&canvasWidth=${canvasWidth}&canvasHeigth=${canvasHeight}`;
         return this.http.get<any>(this.APIUrl + ciculeAPI);
     }
     // getUsers(): Observable<any> {

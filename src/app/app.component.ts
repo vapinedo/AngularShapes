@@ -12,11 +12,6 @@ export class AppComponent {
 
   constructor(private shapeSvc: ShapeService) { }
 
-  ngOnInit(): void {
-    this.shapeSvc.getShape(25)
-      .subscribe(Response => {
-        //this.userList = datos;
-        console.log(Response);
-      });
-  }
+
+
 }

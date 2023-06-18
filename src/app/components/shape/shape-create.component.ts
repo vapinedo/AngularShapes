@@ -4,14 +4,14 @@ import { ShapeService } from "src/app/services/shape.service";
 
 
 @Component({
-    selector: 'shape-create',
-    templateUrl: './shape-create.component.html',
-    styleUrls: ['./shape-create.component.scss']
-  })
+  selector: 'shape-create',
+  templateUrl: './shape-create.component.html',
+  styleUrls: ['./shape-create.component.scss']
+})
 export class ShapeCreateComponent implements OnInit {
 
   canvasContext: any;
-  @ViewChild('canvas', { static: true }) 
+  @ViewChild('canvas', { static: true })
   canvas!: ElementRef<HTMLCanvasElement>;
 
   shapeToRender: string = "";
@@ -21,31 +21,31 @@ export class ShapeCreateComponent implements OnInit {
     { key: "circle", value: "Circle" },
     { key: "hexagon", value: "Hexagon" },
     { key: "heptagon", value: "Heptagon" },
-    { key: "isosceles_triangle", value: "Isosceles Triangle"} , 
+    { key: "isosceles_triangle", value: "Isosceles Triangle" },
     { key: "parallelogram", value: "Parallelogram" },
     { key: "octagon", value: "Octagon" },
     { key: "oval", value: "Oval" },
     { key: "pentagon", value: "Pentagon" },
-    { key: "rectangle", value: "Rectangle"} , 
+    { key: "rectangle", value: "Rectangle" },
     { key: "square", value: "Square" },
-    { key: "scalene_triangle", value: "Scalene Triangle"} , 
-    { key: "triangle", value: "Triangle"} , 
+    { key: "scalene_triangle", value: "Scalene Triangle" },
+    { key: "triangle", value: "Triangle" },
   ];
 
   form = this.fb.group({
-    shape: ["", {validators: [Validators.required]}],
-    radius: ["", {validators: [Validators.pattern(/[0-9]/)]}],
-    side: ["", {validators: [Validators.pattern(/[0-9]/)]}],
-    side2: ["", {validators: [Validators.pattern(/[0-9]/)]}],
-    side3: ["", {validators: [Validators.pattern(/[0-9]/)]}],
-    width: ["", {validators: [Validators.pattern(/[0-9]/)]}],
-    height: ["", {validators: [Validators.pattern(/[0-9]/)]}],
+    shape: ["", { validators: [Validators.required] }],
+    radius: ["", { validators: [Validators.pattern(/[0-9]/)] }],
+    side: ["", { validators: [Validators.pattern(/[0-9]/)] }],
+    side2: ["", { validators: [Validators.pattern(/[0-9]/)] }],
+    side3: ["", { validators: [Validators.pattern(/[0-9]/)] }],
+    width: ["", { validators: [Validators.pattern(/[0-9]/)] }],
+    height: ["", { validators: [Validators.pattern(/[0-9]/)] }],
   });
 
   constructor(
     private fb: FormBuilder,
     private shapeSvc: ShapeService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.canvasContext = this.canvas.nativeElement.getContext('2d');
@@ -55,10 +55,16 @@ export class ShapeCreateComponent implements OnInit {
 
   async onSubmit() {
     const formData = this.form.value;
-    this.shapeSvc.getShape(formData.radius)
+    const canvasWidth = this.canvas.nativeElement.width;
+    const canvasHeight = this.canvas.nativeElement.height;
+    this.shapeSvc.getShape(formData.radius, canvasWidth, canvasHeight)
       .subscribe(response => {
-        this.drawCircle(this.canvasContext, this.canvas, formData.radius, response.x, response.y);    
+
+        this.drawCircle(this.canvasContext, this.canvas, formData.radius, response.x, response.y);
+
       })
+
+
 
     //   const point1 = {x: 30,  y: 180};
     //   const point2 = {x: 170, y: 160};
@@ -82,7 +88,7 @@ export class ShapeCreateComponent implements OnInit {
     // const y = canvas.nativeElement.height / 2;
 
     context.beginPath();
-    
+
     context.arc(x, y, radius, 0, 2 * Math.PI, false);
     context.lineWidth = 2;
     context.strokeStyle = '#118ab2';
